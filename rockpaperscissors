@@ -1,0 +1,44 @@
+from random import randint
+
+class playGame :
+
+    #constructor
+    def __init__(self):
+        print('welcome!')
+
+    #
+    def newGame(self):
+        #get the user input here
+        print('rock, paper, scissors!?')
+        choice = input();
+        print('shoot!')
+
+        # compute random
+        computer = randint(3)
+        compChoice = ''
+        # text conversion of random
+        if (computer == 1):
+            compChoice = 'rock'
+        elif (computer == 2):
+            compChoice = 'paper'
+        else:
+            compChoice = 'scissors'
+
+        print('the computer chose' + compChoice)
+
+        # calculate if win or not
+        if (compChoice == choice):
+            print('you tied!')
+        
+        elif (choice == 'rock'):
+            if compChoice == 'paper': print('you lost!')
+            elif compChoice == 'scissors': print ('you won!')
+        elif (choice == 'paper'):
+            if compChoice == 'rock': print('you won!')
+            elif compChoice == 'scissors': print('you lost!')
+        elif (choice == 'scissors'):
+            if compChoice == 'rock': print('you lost!')
+            elif compChoice == 'paper': print('you won!')
+
+game = playGame()
+game.newGame()
