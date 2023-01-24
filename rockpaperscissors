@@ -1,44 +1,49 @@
 from random import randint
+from mango import *
 
 class playGame :
 
-    #constructor
+    # import tallies from database up here
+
+    # constructs game
     def __init__(self):
         print('welcome!')
 
-    #
+    # performs game functionality
     def newGame(self):
-        #get the user input here
-        print('rock, paper, scissors!?')
-        choice = input();
-        print('shoot!')
+        # get the user input here
+        print('rock (1), paper (2), scissors (3) ...')
+        choice = int(input())
+        while choice != 1 and choice != 2 and choice != 3:
+            print('rock (1), paper (2), scissors (3) ...')
+            choice = int(input())
+        print('... shoot!')
 
         # compute random
-        computer = randint(3)
-        compChoice = ''
-        # text conversion of random
-        if (computer == 1):
-            compChoice = 'rock'
-        elif (computer == 2):
-            compChoice = 'paper'
-        else:
-            compChoice = 'scissors'
+        computer = randint(1,3)
 
-        print('the computer chose' + compChoice)
+        # nested method to made number / word conversion faster
+        def num_to_word(int):
+            if int == 1:
+                return 'rock'
+            elif int == 2:
+                return 'paper'
+            else:
+                return 'scissors'
 
-        # calculate if win or not
-        if (compChoice == choice):
+        print('the computer chose ' + num_to_word(computer))
+
+        # calculate if player wins or not
+        if (choice == computer):
             print('you tied!')
-        
-        elif (choice == 'rock'):
-            if compChoice == 'paper': print('you lost!')
-            elif compChoice == 'scissors': print ('you won!')
-        elif (choice == 'paper'):
-            if compChoice == 'rock': print('you won!')
-            elif compChoice == 'scissors': print('you lost!')
-        elif (choice == 'scissors'):
-            if compChoice == 'rock': print('you lost!')
-            elif compChoice == 'paper': print('you won!')
+        elif (choice - computer) == (1 or -2):
+            print('you won!')
+        else:
+            print('you lost!')
 
+# initializing game
 game = playGame()
-game.newGame()
+print('do you want to play rock paper scissors? (y/n)')
+while input() == 'y':  
+    game.newGame()
+    print('do you want to play again? (y/n)')
