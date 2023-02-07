@@ -14,9 +14,9 @@ tallies = mango['tallies']
 def insertBlank():
     count = {
         "_id": 1,
-        "one": {"count" : 0},
-        "two": {"count" : 0},
-        "three": {"count" : 0}
+        "one" : 0,
+        "two" : 0,
+        "three" : 0
     }
     tallies.insert_one(count)
 
@@ -28,5 +28,3 @@ def printDB():
 def clearDB():
     tallies.delete_many({})
     insertBlank()
-
-printDB()

@@ -1,9 +1,8 @@
 from random import randint
 from mango import *
+from skewRandom import *
 
 class playGame :
-
-    # import tallies from database up here
 
     # constructs game
     def __init__(self):
@@ -28,15 +27,21 @@ class playGame :
                 3 : 'three'
             }
             choice = nums.get(userChoice)
-            choice = (choice + ".count")
             newT = mango["tallies"].update_one(
                 {"_id" : 1},
                 {"$inc":
                    {choice: 1}
                 }
             )
-        
         updateDB()
+
+        # here is where we calculate skews?
+        def computeSkew():
+            values = (tallies.find_one({"_id" : 1}))
+            oneCount = values.get("one")
+            twoCount = values.get("two")
+            threeCount = values.get("three")
+            skew = skewRandom(oneCount, twoCount, threeCount)
 
         # compute random
         computer = randint(1,3)
@@ -67,3 +72,4 @@ print('do you want to play rock paper scissors? (y/n)')
 while input() == 'y':  
    game.newGame()
    print('do you want to play again? (y/n)')
+
