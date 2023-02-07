@@ -29,3 +29,4 @@ def clearDB():
     tallies.delete_many({})
     insertBlank()
 
+printDB()
