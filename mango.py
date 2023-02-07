@@ -1,7 +1,7 @@
 import pymongo
 import pprint
-
 from pymongo import MongoClient
+
 me = MongoClient()
 
 # this is the database!
@@ -10,12 +10,22 @@ mango = me['rocks']
 # this is a collection in the database!
 tallies = mango['tallies']
 
-tally = {
-    "1" : "0",
-    "2" : "0",
-    "3" : "0"
-}
+# inserts blank tallies count
+def insertBlank():
+    count = {
+        "_id": 1,
+        "one": {"count" : 0},
+        "two": {"count" : 0},
+        "three": {"count" : 0}
+    }
+    tallies.insert_one(count)
 
-tallies.insert_one(tally)
-pprint.pprint(tallies.find_one())
+# pretty prints whole db
+def printDB():
+    pprint.pprint(tallies.find_one())
+
+# just clears db and inserts blank count back
+def clearDB():
+    tallies.delete_many({})
+    insertBlank()
 

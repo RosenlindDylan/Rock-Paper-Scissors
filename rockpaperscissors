@@ -22,7 +22,7 @@ class playGame :
         # compute random
         computer = randint(1,3)
 
-        # nested method to made number / word conversion faster
+        # nested method to make number / word conversion faster
         def num_to_word(int):
             if int == 1:
                 return 'rock'
@@ -42,8 +42,20 @@ class playGame :
             print('you lost!')
 
 # initializing game
-game = playGame()
-print('do you want to play rock paper scissors? (y/n)')
-while input() == 'y':  
-    game.newGame()
-    print('do you want to play again? (y/n)')
+# commented out to work on the db update function
+# game = playGame()
+# print('do you want to play rock paper scissors? (y/n)')
+# while input() == 'y':  
+#    game.newGame()
+#    print('do you want to play again? (y/n)')
+
+# write modifyable input to reduce redunancy
+
+
+# put in function later - this just updates the ones field by one
+newT = mango["tallies"].update_one(
+    {"_id" : 1},
+    {"$inc":
+        {"one.count": 1}
+    }
+)
