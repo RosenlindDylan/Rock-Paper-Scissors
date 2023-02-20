@@ -35,18 +35,27 @@ class playGame :
             )
         updateDB()
 
-        # here is where we calculate skews?
+        # this calculates the skew matrix based on the number of times each user option has
+        # been chosen
         def computeSkew():
             values = (tallies.find_one({"_id" : 1}))
             oneCount = values.get("one")
             twoCount = values.get("two")
             threeCount = values.get("three")
             skew = skewRandom(oneCount, twoCount, threeCount)
+            return skew.percentageCalc()
 
-        # compute random
-        computer = randint(1,3)
+        skews = computeSkew()
+        # apply the skew to a random to get computer selection based on the probability matrix
+        selRange = randint(0,100)
+        if selRange < skews[0]:
+            computer = 1
+        elif selRange < skews[1]:
+            computer = 2
+        else:
+            computer = 3
 
-        # nested method to make number / word conversion faster
+        # another nested method to make number / word conversion more efficent
         def num_to_word(int):
             if int == 1:
                 return 'rock'
@@ -65,8 +74,7 @@ class playGame :
         else:
             print('you lost!')
 
-# initializing game
-
+# main for game
 game = playGame()
 print('do you want to play rock paper scissors? (y/n)')
 while input() == 'y':  

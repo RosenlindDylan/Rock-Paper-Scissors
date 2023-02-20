@@ -1,27 +1,17 @@
 from random import randint
 from mango import *
+import pprint
 
 class skewRandom:
 
     def __init__(self, one, two, three):
-        self.oneCount = 1
-        self.twoCount = 2
-        self.threeCount = 3
+        self.oneCount = one
+        self.twoCount = two
+        self.threeCount = three
         
     def percentageCalc(self):
         totalGames = self.oneCount + self.twoCount + self.threeCount
-        oneP = int(round(self.oneCount*100/totalGames), 0)
-        print(oneP)
-        
-
-
-#def computeSkew():
-#            values = (tallies.find_one({"_id" : 1}))
-#            oneCount = values.get("one")
-#            twoCount = values.get("two")
-#            threeCount = values.get("three")
-#            skew = skewRandom(oneCount, twoCount, threeCount)
-#            skew.percentageCalc()
-
-skew = skewRandom()
-skew.percentageCalc()
+        oneP = round(self.oneCount*100/totalGames)
+        twoP = round(self.twoCount*100/totalGames)
+        threeP = round(self.threeCount*100/totalGames)
+        return [oneP, twoP, threeP]
