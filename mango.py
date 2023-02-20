@@ -20,11 +20,12 @@ def insertBlank():
     }
     tallies.insert_one(count)
 
-# pretty prints whole db
+# pretty prints whole db so you can check values
 def printDB():
     pprint.pprint(tallies.find_one())
 
 # just clears db and inserts blank count back
+# good way to reset db
 def clearDB():
     tallies.delete_many({})
     insertBlank()
