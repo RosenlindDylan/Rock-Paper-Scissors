@@ -1,4 +1,3 @@
-import pymongo
 import pprint
 from pymongo import MongoClient
 
@@ -24,8 +23,7 @@ def insertBlank():
 def printDB():
     pprint.pprint(tallies.find_one())
 
-# just clears db and inserts blank count back
-# good way to reset db
+# reset db
 def clearDB():
     tallies.delete_many({})
     insertBlank()

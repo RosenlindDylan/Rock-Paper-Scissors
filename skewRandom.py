@@ -1,6 +1,3 @@
-from random import randint
-from mango import *
-import pprint
 
 class skewRandom:
 
