@@ -1,4 +1,2 @@
 # Rock-Paper-Scissors
-rock paper scissors game- just a short fun project to get practice with the PyMongo MongoDB driver
-allows the user to play rock paper scissors against computer
-the user's choices are tracked in the database to change the frequency that the computer chooses rock, paper, or scissors in response to user choice analytics
+Rock-Paper-Scissors is a simple terminal game where a user plays rock-paper-scissors against a 'computer'. A local MongoDB database is used to track user choices and in turn, create a probabilistic skew for how the 'computer' will play against the user. Personal project written in Python, PyMongo driver is used for the local database.
